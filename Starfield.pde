@@ -1,35 +1,47 @@
-NormalParticle bob = new NormalParticle();
+NormalParticle [] bob;
+
 void setup()
 {
   size(500,500);
-  background(0);
+  bob =  new NormalParticle [1000];
+  for(int i = 0;i < bob.length; i++)
+  {
+    bob[i] = new NormalParticle();
+  }
 }
 void draw()
 {
-  bob.move();
-  bob.show();
+  background(0);
+  for(int i = 0; i <bob.length; i++)
+  {
+  bob[i].move();
+  bob[i].show();
+  }
 }
 class NormalParticle
 {
-  int c;
-  double x1,y1,s,a;
+  int c1,s1;
+  double x1,y1,a1;
   NormalParticle()
   {
     x1 = 250;
     y1 = 250;
-    a = 2*Math.PI;
-    s = (int)(Math.random()*11);
+    a1 = Math.PI*2*Math.random();
+    s1 = (int)(Math.random()*11);
+    c1=(int)(Math.random()*256);
   }
   
   void move()
   {
-    x1 = Math.cos((float)a)*s + x1;
-    y1 = Math.sin((float)a)*s + y1;
+    x1 = cos((float)a1)*s1 + x1;
+    y1 = sin((float)a1)*s1 + y1;
   }
 
   void show()
   {
-    ellipse((float)x1,(float)y1,50,50);
+    noStroke();
+    fill(150,c1,c1);
+    ellipse((float)x1,(float)y1,10,10);
   }
 }
 interface Particle
@@ -44,4 +56,3 @@ class JumboParticle //uses inheritance
 {
   //your code here
 }
-
