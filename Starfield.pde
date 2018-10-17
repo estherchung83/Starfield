@@ -1,18 +1,20 @@
-NormalParticle [] bob;
 N2 [] tom;
 Particle[] particles;
 void setup()
 {
   size(500,500);
-  bob =  new NormalParticle [10000];
-  for(int i = 0;i < bob.length; i++)
+  particles =  new Particle [1000];
+  for(int i = 0;i < particles.length; i++)
   {
-    bob[i] = new NormalParticle();
+    particles[i] = new NormalParticle();
   }
-  tom =  new N2 [10000];
-  for(int i = 0;i < tom.length; i++)
+  particles[1] = new JumboParticle();
+  //particles[0] = new OddballParticle();
+  
+  //tom =  new N2 [1000];
+  //for(int i = 0;i < tom.length; i++)
   {
-    tom[i] = new N2();
+    //tom[i] = new N2();
   }
  
 }
@@ -20,15 +22,15 @@ void draw()
 {
   
   background(0);
-  for(int i = 0; i <bob.length; i++)
+  for(int i = 0; i <particles.length; i++)
   {
-  bob[i].move();
-  bob[i].show();
+  particles[i].move();
+  particles[i].show();
   }
-  for(int i = 0; i <tom.length; i++)
+  //for(int i = 0; i <tom.length; i++)
   {
-  tom[i].move();
-  tom[i].show();
+  //tom[i].move();
+  //tom[i].show();
   }
 }
 class NormalParticle implements Particle 
@@ -37,10 +39,10 @@ class NormalParticle implements Particle
   double x1,y1,s1;
   NormalParticle()
   {
-    x1 = 150;
-    y1 = 150;
+    x1 = 250;
+    y1 = 250;
     a1 = (int)(Math.PI*10*Math.random());
-    s1 = (Math.random()*11);
+    s1 = (Math.random()*5);
     c1=(int)(Math.random()*256);
   }
   
@@ -48,16 +50,17 @@ class NormalParticle implements Particle
   {
     x1 = cos((float)a1)*s1 + x1;
     y1 = sin((float)a1)*s1 + y1;
+    a1 += .03;
   }
 
   public void show()
   {
     noStroke();
     fill(150,c1,c1);
-    ellipse((float)x1,(float)y1,10,10);
+    ellipse((float)x1,(float)y1,20,20);
   }
 }
-class NormalParticle2 implements Particle
+/*class NormalParticle2 implements Particle
 {
   int c1,a1;
   double x1,y1,s1;
@@ -83,6 +86,7 @@ class NormalParticle2 implements Particle
     ellipse((float)x1,(float)y1,10,10);
   }
 }
+*/
 interface Particle
 {
   public void show();
@@ -90,32 +94,16 @@ interface Particle
 }
 //class OddballParticle implements Particle
 {
-  //your code here
+  //int x1,y1;
+  //Oddbs
 }
 class JumboParticle extends NormalParticle
 {
-  int c1,a1;
-  double x1,y1,s1;
-  JumboParticle()
-  {
-    x1 = 150;
-    y1 = 150;
-    a1 = (int)(Math.PI*10*Math.random());
-    s1 = (Math.random()*11);
-    c1=(int)(Math.random()*256);
-  }
-  
-  public void move()
-  {
-    x1 = cos((float)a1)*s1 + x1;
-    y1 = sin((float)a1)*s1 + y1;
-  }
-
-  public void show()
+  void show()
   {
     noStroke();
     fill(150,c1,c1);
-    ellipse((float)x1,(float)y1,100,100);
+    ellipse((float)x1,(float)y1,60,60);
   }
 }
 
@@ -146,4 +134,3 @@ class N2
     ellipse((float)x1,(float)y1,10,10);
   }
 }
-
