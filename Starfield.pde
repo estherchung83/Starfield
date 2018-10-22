@@ -8,7 +8,7 @@ void setup()
     particles[i] = new NormalParticle();
   }
   particles[1] = new JumboParticle();
-  //particles[0] = new OddballParticle();
+  particles[0] = new OddballParticle();
   
   
  
@@ -22,7 +22,7 @@ void draw()
   particles[i].move();
   particles[i].show();
   }
-  
+ 
 }
 class NormalParticle implements Particle 
 {
@@ -50,9 +50,17 @@ class NormalParticle implements Particle
     noStroke();
     fill(150,c1,c1);
     ellipse((float)x1,(float)y1,20,20);
-    if (s1 == 5.5)
+    if (x1>500||x1<0)
     {
-      s1 = 1;
+       x1 = cos((float)a1)*s1 + 250;
+       a1=0;
+       s1=0;
+    }
+    if(y1<0||y1>500)
+    {
+      y1 = sin((float)a1)*s1 + 250;
+      a1=0;
+       s1=0;
     }
   }
 }
@@ -62,10 +70,35 @@ interface Particle
   public void show();
   public void move();
 }
-//class OddballParticle implements Particle
+class OddballParticle implements Particle
 {
-  //int x1,y1;
-  //Oddbs
+  int x1,y1,c1;
+  OddballParticle()
+  {
+    x1 = 50;
+    y1 = 50;
+    c1 = (int)(Math.random()*256);
+  }
+  void move()
+  {
+    x1 = x1 + (int)(Math.random()*50)-25;
+    y1 = y1 + (int)(Math.random()*50)-25;  
+  }
+  void show()
+  {
+    noStroke();
+    fill(c1,200,100);
+    ellipse((float)x1,(float)y1,60,60);
+    if (x1<0||x1>500)
+    {
+      x1 = 10;
+    }
+    if(y1<0||y1>500)
+    {
+      y1 = 10;
+    }
+  }
+  
 }
 class JumboParticle extends NormalParticle
 {
@@ -74,7 +107,17 @@ class JumboParticle extends NormalParticle
     noStroke();
     fill(150,c1,c1);
     ellipse((float)x1,(float)y1,80,80);
+    if (x1>500||x1<0)
+    {
+       x1 = cos((float)a1)*s1 + 250;
+       a1=0;
+       s1=0;
+    }
+    if(y1<0||y1>500)
+    {
+      y1 = sin((float)a1)*s1 + 250;
+      a1=0;
+       s1=0;
+    }
   }
 }
-
-
